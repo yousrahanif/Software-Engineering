@@ -33,7 +33,6 @@ public class TipCalculatorActivity extends AppCompatActivity {
         pS = (EditText) findViewById(R.id.partySizeValue);
 
 
-
         fifteenPercecntTip = (EditText) findViewById(R.id.fifteenPercentTipValue);
         twentyPercecntTip = (EditText) findViewById(R.id.twentyPercentTipValue);
         twentyfivePercecntTip = (EditText) findViewById(R.id.twentyfivePercentTipValue);
@@ -46,46 +45,55 @@ public class TipCalculatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                double money =Double.parseDouble(cA.getText().toString());
-                int member = Integer.parseInt(pS.getText().toString());
-                double pay;
-                pay = money/member;
-
-
-                int tip15 = (int) Math.round((pay * 15) / 100);
-                int total15 = (int) Math.round(tip15 + pay);
-                int tip20 = (int) Math.round((pay * 20) / 100);
-                int total20 = (int) Math.round(tip20 + pay);
-                int tip25 = (int) Math.round((pay * 25) / 100);
-                int total25 = (int) Math.round(tip25 + pay);
+                if(!cA.getText().toString().equals("") && !pS.getText().toString().equals("")) {
+                    double money = Double.parseDouble(cA.getText().toString());
+                    int member = Integer.parseInt(pS.getText().toString());
+                    double pay;
+                    pay = money / member;
 
 
-                fifteenPercecntTip.setText(Integer.toString(tip15));
-                twentyPercecntTip.setText(Integer.toString(tip20));
-                twentyfivePercecntTip.setText(Integer.toString(tip25));
+                    int tip15 = (int) Math.round((pay * 15) / 100);
+                    int total15 = (int) Math.round(tip15 + pay);
+                    int tip20 = (int) Math.round((pay * 20) / 100);
+                    int total20 = (int) Math.round(tip20 + pay);
+                    int tip25 = (int) Math.round((pay * 25) / 100);
+                    int total25 = (int) Math.round(tip25 + pay);
 
-                fifteenPercecntTotal.setText(Integer.toString(total15));
-                twentyPercecntTotal.setText(Integer.toString(total20));
-                twentyfivePercecntTotal.setText(Integer.toString(total25));
-                InputMethodManager display = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                assert display != null;
-                display.hideSoftInputFromWindow(compute.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-                if (money <=0){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Pay something!",Toast.LENGTH_SHORT);
+                    fifteenPercecntTip.setText(Integer.toString(tip15));
+                    twentyPercecntTip.setText(Integer.toString(tip20));
+                    twentyfivePercecntTip.setText(Integer.toString(tip25));
+
+                    fifteenPercecntTotal.setText(Integer.toString(total15));
+                    twentyPercecntTotal.setText(Integer.toString(total20));
+                    twentyfivePercecntTotal.setText(Integer.toString(total25));
+                    InputMethodManager display = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    assert display != null;
+                    display.hideSoftInputFromWindow(compute.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+
+                if (pay <= 0) {
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Pay something", Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
+
+                    else if (member <= 0) {
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Where is your members!", Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
+
+                }
+
+                else {
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT);
                     toast.show();
 
                 }
-                else if (member <=0 ){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Where is your members!",Toast.LENGTH_SHORT);
-                    toast.show();
-
-
-                }
-
-
-
 
 
             }
