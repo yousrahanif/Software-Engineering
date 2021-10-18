@@ -4,9 +4,10 @@ User Class:
 - It has user id and user password. Those are private value so not everyone can access those. 
 - It allows to add users using addUser() method , edit users by editUser() method and remover users throug removerUser()method.
 
+
 ReminderList:
 - Reminder list has name and Id.
-- It allows to create, delete, rename, select list using        createList(), deleteList(), renameList(), selectList() method respectively.
+- It allows to create, delete, rename, select list using createList(), deleteList(), renameList(), selectList() method respectively.
 - Also it allows add reminder in the list, delete reminder, edit reminder, search, save, clear reminder using createReminder(), deleteReminder(), editReminder(), searchReminder(), saveReminder(), clearReminder method respectively. 
 - Moreover, it can set time for reminder using reminderTime() method. 
 - This class have relation (composition) with Checking Class
