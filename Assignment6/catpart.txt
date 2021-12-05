@@ -1,0 +1,44 @@
+# FileExist
+    See if file name is present:
+        File Exist.					[property fileExist] 
+        File Not Exist.					[error][property fileNotExist]
+
+# DestinationOpen
+      See if destination is valid:
+        Destination Valid.				[if fileExist][property destinationOpen] 
+        Destination Invalid.				[error]	
+
+
+# CopiedFrom
+  Tells us how many files are being copied from source:
+	None.                   			[if fileExist] [property noneCopiedFrom]
+	one.                   				[if fileExist] [property oneCopiedFrom]
+        Many.						[if fileExist][property manyCopiedFrom]
+
+# CopiedTo
+  Tells us how many files are being copied to destination:
+	None.                   			[if fileExist] [property noneCopiedTo]
+	one.                   				[if fileExist] [property oneCopiedTo]
+        Many.						[if fileExist][property manyCopiedTo]
+
+
+# Operation
+  This tells details about operation -b (backup):
+	Backup Enable.					[if fileExist][property backup_enable]
+	Backup Disable.					[if !fileExist][property backup_disable]
+
+  This tells details about operation -f (force):
+	Force Enable.					[if destinationOpen][property force_enable]
+	Force Disable.					[property force_disable]
+
+  Remove if file is not open:
+	File Removed.					[if force_disable][peroperty fileRemoved]
+	File Not Removed.				[if force_enable]
+  
+  This tells details about operation -r (recursive):
+	Recursive Enable.				[if destinationOpen][property recursive_enable]
+	Recursive Disable.				[property recursive_disable]
+
+  This tells details about operation -v (verbose):
+	Verbose Enable.					[if backup_enable || force_enable || recursive_enable][property verbose_enable]
+	Verbose Disable.				[property verbose_disable]
